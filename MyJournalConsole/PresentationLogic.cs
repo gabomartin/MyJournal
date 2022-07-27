@@ -12,7 +12,7 @@ namespace MyJournalConsole
         public static void PrintMenu()
         {
             Console.WriteLine();
-            Console.WriteLine("Seleccione una opción.");
+            Console.WriteLine("Seleccione una opción:");
             Console.WriteLine("1. Listar entradas");
             Console.WriteLine("2. Agregar entrada");
             Console.WriteLine("3. Modificar entrada");
@@ -20,6 +20,7 @@ namespace MyJournalConsole
             Console.WriteLine("5. Cargar desde archivo");
             Console.WriteLine("6. Guardar a archivo");
             Console.WriteLine("7. Eliminar archivo");
+            Console.WriteLine("8. Limpiar pantalla");
             Console.WriteLine("0. Salir");
             Console.Write("Su elección: ");
         }
@@ -215,6 +216,29 @@ namespace MyJournalConsole
             catch (Exception ex)
             {
                 Console.WriteLine("Se ha producido un error al intentar eliminar el archivo.");
+            }
+        }
+        public static void AutoLoad(LogicLayer logic)
+        {
+            if (logic.CheckJSON())
+            {
+                logic.LoadJSON();
+            }
+        }
+        public static void PromptSave(LogicLayer logic)
+        {
+            string input;
+            Console.WriteLine();
+            Console.Write("¿Desea guardar antes de salir?(si/no): ");
+            input = Console.ReadLine().Trim().ToLower();
+            while (input != "si" && input != "no" || string.IsNullOrEmpty(input))
+            {
+                Console.Write("Opción invalida. Intente de nuevo: ");
+                input = Console.ReadLine().Trim().ToLower();
+            }
+            if (input == "si")
+            {
+                PresentationLogic.SaveFile(logic);
             }
         }
 

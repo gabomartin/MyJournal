@@ -62,5 +62,11 @@ namespace MyJournalLogic
   
             return deletePath;
         }
+        public bool CheckJSON()
+        {
+            string jsonPath = myDocumentsPath + @"\" + fileName;
+            if (File.Exists(jsonPath)) return true;
+            return false;
+        }
     }
 }

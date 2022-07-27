@@ -5,6 +5,7 @@ int userInput = -1;
 PresentationLogic.PrintWelcome();
 
 LogicLayer logic = new LogicLayer();
+PresentationLogic.AutoLoad(logic);
 
 while (userInput != 0)
 {
@@ -51,6 +52,9 @@ while (userInput != 0)
         case 7:
             PresentationLogic.DeleteFile(logic);
             break;
+        case 8:
+            Console.Clear();
+            break;
         default:
             Console.WriteLine("Opción invalida. Intente nuevamente.");
             userInput = -1;
@@ -59,6 +63,8 @@ while (userInput != 0)
     }
 
 }
+
+PresentationLogic.PromptSave(logic);
 
 PresentationLogic.PrintQuit();
 Thread.Sleep(1000);
