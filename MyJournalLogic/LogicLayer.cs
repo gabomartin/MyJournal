@@ -68,5 +68,18 @@ namespace MyJournalLogic
             if (File.Exists(jsonPath)) return true;
             return false;
         }
+        public bool CheckChanges()
+        {
+            if (!CheckJSON()) return false;
+            string loadPath = myDocumentsPath + @"\" + fileName;
+            string jsonEntries = File.ReadAllText(loadPath);
+            string entriesString = JsonSerializer.Serialize(Entries);
+
+            if (!string.Equals(jsonEntries.Trim(), entriesString.Trim())) return true;
+            
+           
+            return false;
+            
+        }
     }
 }

@@ -227,6 +227,7 @@ namespace MyJournalConsole
         }
         public static void PromptSave(LogicLayer logic)
         {
+            if (!logic.CheckChanges()) return;
             string input;
             Console.WriteLine();
             Console.Write("¿Desea guardar antes de salir?(si/no): ");
